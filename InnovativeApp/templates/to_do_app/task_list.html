@@ -1,0 +1,33 @@
+
+{% block content %}
+<p>
+  <button><a href="{% url 'task_add' %}" class="btn btn-primary">Add Task</a></button>
+</p>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Task ID</th><th> </th>
+        <th>Description</th><th> </th>
+        <th>Task Created</th><th> </th>
+        <th>Task status</th><th> </th>
+        <th>Modified Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in to_do_app %}
+        <tr>
+          <td><a href="{% url 'task_edit' task.pk %}">{{ task.Task_Id}}</a></td><td> </td>
+          <td>{{task.Task_desc}}</td><td> </td>
+          <td>{{task.Task_created}}</td><td> </td>
+          <td>{{task.Task_status}}</td><td> </td>
+          <td>{{ task.Task_modified }}</td><td> </td>
+        </tr>
+        {% empty %}
+          <tr class="table-active">
+            <td colspan="3">No data</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
